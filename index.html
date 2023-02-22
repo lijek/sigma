@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Sigma Web - vanilla html js css</title>
+  <script src="./main.js" defer></script>
+</head>
+<body>
+  <div id="menuBar">
+    <button>new line</button>
+    <button>draw line</button>
+    <button>draw input</button>
+    <button>draw output</button>
+    <button>delete element</button>
+    <button id="toggleTestRenderButton">toggle testRender</button>
+    <input type="range" id="scale" min="25" max="300" step="5" value="100">
+  </div>
+  <div class="ldRender" id="programRender"></div>
+  <hr>
+  <ol class="ldRender" id="testRender" hidden>
+    <li class="ldLine-container">
+      <div class="ldLine">
+        <div class="ldElement">
+          <div class="ldElement-description">DESCRIPTIONasdasdasdasda</div>
+          <div>asdas</div>
+        </div>
+        <div class="ldLine-element">
+          <div class="ldLine-top hidden"></div>
+          <div class="ldLine-bottom hidden"></div>
+          <div class="ldLine-middle"></div>
+          <div class="ldLine-left"></div>
+          <div class="ldLine-right"></div>
+        </div>
+        <div class="ldElement">
+          <div class="ldElement-description">xdd</div>
+          <div class="ldIO-element-left"></div>
+          <div class="ldIO-element-right"></div>
+          <div class="ldIO-element-center">
+            <div class="ldIO-element-negation"></div>
+          </div>
+          <div class="ldElement-id-container">
+            <div class="ldElement-id">I0001</div>
+          </div>
+          <!-- <div class="ldElement-center-reference"></div> -->
+        </div>
+        <div class="ldLine-element">
+          <div class="ldLine-top hidden"></div>
+          <div class="ldLine-bottom"></div>
+          <div class="ldLine-middle"></div>
+          <div class="ldLine-left"></div>
+          <div class="ldLine-right"></div>
+        </div>
+        <div class="ldElement">
+          <div class="ldElement-description">xdd</div>
+          <div class="ldIO-element-left"></div>
+          <div class="ldIO-element-right"></div>
+          <div class="ldIO-element-center ldIO-element-output">
+            <div class="ldIO-element-negation"></div>
+          </div>
+          <div class="ldElement-id-container">
+            <div class="ldElement-id">Q0001</div>
+          </div>
+      </div>
+    </li>
+    <li class="ldLine-container">
+      <div class="ldLine">
+        <div class="ldElement">
+          <div class="ldElement-description">DESCR</div>
+          <div>asdas</div>
+          <div>asdas</div>
+          <div>asdas</div>
+        </div>
+        <div class="ldElement">
+          <div class="ldElement-description">srajmer</div>
+          <div class="ldBlock-element-left"></div>
+          <div class="ldBlock-element-right"></div>
+          <div class="ldBlock-element-center">
+            <div class="ldTimer-description">
+              <div>50ms</div>
+              <div class="ldTimer-description-subtext">ON</div>
+            </div>
+            <div class="ldTimer-description">
+              <div>30s</div>
+              <div class="ldTimer-description-subtext">OFF</div>
+            </div>
+          </div>
+          <div class="ldElement-id-container">
+            <div class="ldElement-id">T0001</div>
+          </div>
+        </div>
+        <div class="ldLine-element">
+          <div class="ldLine-top hidden"></div>
+          <div class="ldLine-bottom hidden"></div>
+          <div class="ldLine-middle"></div>
+          <div class="ldLine-left"></div>
+          <div class="ldLine-right"></div>
+        </div>
+        <div class="ldLine-element">
+          <div class="ldLine-top"></div>
+          <div class="ldLine-bottom hidden"></div>
+          <div class="ldLine-middle"></div>
+          <div class="ldLine-left"></div>
+          <div class="ldLine-right"></div>
+        </div>
+        <div class="ldLine-element">
+          <div class="ldLine-top hidden"></div>
+          <div class="ldLine-bottom hidden"></div>
+          <div class="ldLine-middle"></div>
+          <div class="ldLine-left"></div>
+          <div class="ldLine-right"></div>
+        </div>
+      </div>
+    </li>
+  </ol>
+</body>
+</html>

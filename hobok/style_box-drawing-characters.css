@@ -1,0 +1,12 @@
+.ldRender {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.ldElement {
+  user-select: none;
+}
+
+.ldElement:hover{
+  background-color: green;
+}

@@ -1,0 +1,250 @@
+:root {
+  --line-thickness: 3px;
+  --line-thickness-x2: calc(var(--line-thickness) * 2);
+  --line-offset: calc(50% - (var(--line-thickness) / 2));
+
+  --element-width: 100px;
+  --element-height: 70px;
+
+  /* --diagonal-angle: atan(var(--element-height)/var(var(--element-width))); */
+
+  --hover-background: rgba(0, 0, 0, 0.1);
+  --line-color: black;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+
+#scale {
+  min-width: 275px;
+}
+
+.ldRender {
+  transform-origin: top left;
+  width: fit-content;
+}
+
+/* .ldLine */
+
+.ldLine {
+  display: inline-flex; /* https://css-tricks.com/fighting-the-space-between-inline-block-elements/ */
+  border-left: 2px black solid;
+  border-right: 2px black solid;
+}
+
+.ldLine > * {
+  display: inline-block;
+  vertical-align: top;
+
+  user-select: none;
+
+  width: var(--element-width);
+  height: var(--element-height);
+  max-width: var(--element-width);
+  max-height: var(--element-height);
+  min-width: var(--element-width);
+  min-height: var(--element-height);
+}
+
+.ldLine > *:hover{
+  background-color: var(--hover-background);
+}
+
+.ldLine-container {
+  width: fit-content;
+}
+
+/* .ldLine */
+
+/* .ldElement */
+
+.ldElement-description {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ldElement-description:hover {
+  overflow: visible;
+  background-color: var(--hover-background);
+  /* TODO: zrobić popup z opisem / dodać tag TITLE z całym opisem */
+}
+
+.ldElement {
+  position: relative;
+}
+
+.ldElement-center-reference {
+  position: absolute;
+  width: var(--line-thickness);
+  background-color: red;
+  height: 100%;
+  top: 0%;
+  left: var(--line-offset);
+}
+
+.ldElement-id-container {
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+}
+
+.ldElement-id {
+  text-align: center;
+}
+
+/* .ldElement */
+
+/* .ldLine-element */
+
+.ldLine-element {
+  position: relative;
+}
+
+.ldLine-top, .ldLine-bottom, .ldLine-middle, .ldLine-left, .ldLine-right {
+  position: absolute;
+  background-color: var(--line-color);
+}
+
+/* .ldLine-top:hover, .ldLine-bottom:hover, .ldLine-left:hover, .ldLine-right:hover {
+  background-color: red;
+} */
+
+.ldLine-top {
+  top: 0%;
+  left: var(--line-offset);
+  width: var(--line-thickness);
+  height: var(--line-offset);
+}
+
+.ldLine-bottom {
+  bottom: 0%;
+  left: var(--line-offset);
+  width: var(--line-thickness);
+  height: var(--line-offset);
+}
+
+.ldLine-middle {
+  top: var(--line-offset);
+  left: var(--line-offset);
+  width: var(--line-thickness);
+  height: var(--line-thickness);
+}
+
+.ldLine-left {
+  top: var(--line-offset);
+  left: 0%;
+  width: var(--line-offset);
+  height: var(--line-thickness);
+}
+
+.ldLine-right {
+  top: var(--line-offset);
+  right: 0%;
+  width: var(--line-offset);
+  height: var(--line-thickness);
+}
+
+/* .ldLine-element */
+
+/* .ldIO-element */
+
+.ldIO-element-left, .ldIO-element-right {
+  background-color: var(--line-color);
+  position: absolute;
+  top: var(--line-offset);
+  width: 30%;
+  height: var(--line-thickness);
+}
+
+.ldIO-element-left {
+  left: 0%;
+}
+
+.ldIO-element-right {
+  right: 0%;
+}
+
+.ldIO-element-center {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  width: calc(40% - var(--line-thickness-x2));
+  height: 40%;
+  border-left: var(--line-thickness) solid var(--line-color);
+  border-right: var(--line-thickness) solid var(--line-color);
+}
+
+.ldIO-element-output {
+  border-radius: 50%;
+  /* border: var(--line-thickness) solid var(--line-color); */
+}
+
+.ldIO-element-negation {
+  background-color: var(--line-color);
+  /* margin: var(--line-thickness); */
+  /* height: var(--line-thickness); */
+
+  /* width: 125%;
+  transform-origin: bottom left;
+  transform: rotate(35deg); */
+
+  /* DONE: poprawne renderowanie skośnej kreski */
+
+  width: 100%;
+  height: 100%;
+
+  /* clip-path: polygon(calc(0% - var(--line-thickness)) 0, 0 0, calc(100% + var(--line-thickness)) 100%, 100% 100%); <- do cipy */
+  clip-path: polygon(calc(0% - var(--line-thickness-x2)) 0, 0 0, calc(100% + var(--line-thickness-x2)) 100%, 100% 100%);
+}
+
+/* .ldIO-element */
+
+/* .ldBlock-element */
+
+.ldBlock-element-left, .ldBlock-element-right {
+  background-color: var(--line-color);
+  position: absolute;
+  top: var(--line-offset);
+  height: var(--line-thickness);
+  width: var(--line-thickness-x2);
+}
+
+.ldBlock-element-left {
+  left: 0%;
+}
+
+.ldBlock-element-right {
+  right: 0%;
+}
+
+.ldBlock-element-center {
+  position: absolute;
+  top: 30%;
+  height: 38%;
+  width: calc(100% - var(--line-thickness-x2) * 3);
+  border: var(--line-color) var(--line-thickness) solid;
+  left: var(--line-thickness-x2);
+
+  text-align: center;
+}
+
+/* .ldBlock-element */
+
+/* .ldTimer-description */
+
+.ldTimer-description {
+  display: inline-block;
+}
+
+.ldTimer-description-subtext {
+  font-size: xx-small;
+  font-weight: bold;
+}
+
+/* .ldTimer-description */
