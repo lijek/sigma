@@ -1,15 +1,38 @@
+/* DARK MODE + KOLORKI */
+
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --line-color: #000000;
+  --hover-background: #b1b1b180;
+  --selected-border: #0000ff;
+  --selection-background: #7373ffab;
+}
+
+html[data-theme='dark'] {
+  --background-color: #121212;
+  --text-color: #F7F8F8;
+  --line-color: #c9c9c9;
+  --hover-background: #55555580;
+  --selected-border: #3838ff;
+  --selection-background: #9090ffab;
+}
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+/* DARK MODE + KOLORKI */
+
 :root {
   --line-thickness: 3px;
   --line-thickness-x2: calc(var(--line-thickness) * 2);
   --line-offset: calc(50% - (var(--line-thickness) / 2));
+  --line-offset-x2: calc(50% - (var(--line-thickness-x2) / 2));
 
   --element-width: 100px;
   --element-height: 70px;
-
-  /* --diagonal-angle: atan(var(--element-height)/var(var(--element-width))); */
-
-  --hover-background: rgba(0, 0, 0, 0.1);
-  --line-color: black;
 }
 
 .hidden {
@@ -21,17 +44,23 @@
   min-width: 275px;
 }
 
+hr {
+  pointer-events: none;
+}
+
 .ldRender {
   transform-origin: top left;
   width: fit-content;
+  list-style-type: none;
+  counter-reset: section;
 }
 
 /* .ldLine */
 
 .ldLine {
   display: inline-flex; /* https://css-tricks.com/fighting-the-space-between-inline-block-elements/ */
-  border-left: 2px black solid;
-  border-right: 2px black solid;
+  border-left: 2px var(--line-color) solid;
+  border-right: 2px var(--line-color) solid;
 }
 
 .ldLine > * {
@@ -53,7 +82,13 @@
 }
 
 .ldLine-container {
-  width: fit-content;
+  display: flex;
+}
+
+.ldLine-container::before {
+  counter-increment: section;
+  content: counter(section) ".";
+  vertical-align: top;
 }
 
 /* .ldLine */
@@ -79,6 +114,24 @@
   position: relative;
 }
 
+.ldElement::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  /* łeeh widać siatke w chrome bo transform scale, w firefox działa tak jak chce*/
+}
+
+.ldElement.cursor::before {
+  border: var(--line-thickness-x2) solid var(--selected-border);
+}
+
+.ldElement.selected::before{
+  background-color: var(--selection-background);
+}
+
 .ldElement-center-reference {
   position: absolute;
   width: var(--line-thickness);
@@ -102,18 +155,10 @@
 
 /* .ldLine-element */
 
-.ldLine-element {
-  position: relative;
-}
-
 .ldLine-top, .ldLine-bottom, .ldLine-middle, .ldLine-left, .ldLine-right {
   position: absolute;
   background-color: var(--line-color);
 }
-
-/* .ldLine-top:hover, .ldLine-bottom:hover, .ldLine-left:hover, .ldLine-right:hover {
-  background-color: red;
-} */
 
 .ldLine-top {
   top: 0%;
@@ -150,6 +195,25 @@
   height: var(--line-thickness);
 }
 
+.ldLine-disabled {
+  /* visibility: hidden; */
+  background-color: #00000000;
+}
+
+.ldLine-disabled.ldLine-top, .ldLine-disabled.ldLine-bottom{
+  left: var(--line-offset-x2);
+  width: var(--line-thickness-x2);
+}
+
+.ldLine-disabled.ldLine-left, .ldLine-disabled.ldLine-right{
+  top: var(--line-offset-x2);
+  height: var(--line-thickness-x2);
+}
+
+.ldLine-disabled:hover {
+  background: var(--hover-background);
+}
+
 /* .ldLine-element */
 
 /* .ldIO-element */
@@ -182,23 +246,16 @@
 
 .ldIO-element-output {
   border-radius: 50%;
+  margin-top: calc(var(--line-thickness) * -1);
+  border-top: var(--line-thickness) solid #00000000;
+  border-bottom: var(--line-thickness) solid #00000000;
   /* border: var(--line-thickness) solid var(--line-color); */
 }
 
 .ldIO-element-negation {
   background-color: var(--line-color);
-  /* margin: var(--line-thickness); */
-  /* height: var(--line-thickness); */
-
-  /* width: 125%;
-  transform-origin: bottom left;
-  transform: rotate(35deg); */
-
-  /* DONE: poprawne renderowanie skośnej kreski */
-
   width: 100%;
   height: 100%;
-
   /* clip-path: polygon(calc(0% - var(--line-thickness)) 0, 0 0, calc(100% + var(--line-thickness)) 100%, 100% 100%); <- do cipy */
   clip-path: polygon(calc(0% - var(--line-thickness-x2)) 0, 0 0, calc(100% + var(--line-thickness-x2)) 100%, 100% 100%);
 }
