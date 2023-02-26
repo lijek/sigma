@@ -9,6 +9,54 @@
   <script src="./main.js" defer></script>
 </head>
 <body>
+  <!-- TODO template wszystkie-->
+  <div style="display: none;" id="ldTemplates">
+    <div class="ldElement" id="ldIO">
+      <div class="ldElement-description">description-placeholder</div>
+      <div class="ldIO-element-left"></div>
+      <div class="ldIO-element-right"></div>
+      <div class="ldIO-element-center">
+        <div class="ldIO-element-negation"></div>
+      </div>
+      <div class="ldElement-id-container">
+        <div class="ldElement-id">id-placeholder</div>
+      </div>
+    </div>
+
+    <div class="ldIO-element-negation" id="ldIONegation"></div>
+
+    <div class="ldElement" id="ldTimer">
+      <div class="ldElement-description">description-placeholder</div>
+      <div class="ldBlock-element-left"></div>
+      <div class="ldBlock-element-right"></div>
+      <div class="ldBlock-element-center">
+        <div class="ldTimer-description">
+          <div>on-delay-placeholder</div>
+          <div class="ldTimer-description-subtext">ON</div>
+        </div>
+        <div class="ldTimer-description">
+          <div>off-delay-placeholder</div>
+          <div class="ldTimer-description-subtext">OFF</div>
+        </div>
+      </div>
+      <div class="ldElement-id-container">
+        <div class="ldElement-id">id-placeholder</div>
+      </div>
+    </div>
+
+    <li class="ldLine-container" id="ldLineContainer">
+      <div class="ldLine"></div>
+    </li>
+
+    <div class="ldElement" id="ldEmptyLineElement">
+      <div class="ldLine-top ldLine-disabled"></div>
+      <div class="ldLine-bottom ldLine-disabled"></div>
+      <div class="ldLine-middle ldLine-disabled"></div>
+      <div class="ldLine-left ldLine-disabled"></div>
+      <div class="ldLine-right ldLine-disabled"></div>
+    </div>
+  </div>
+
   <div id="menuBar">
     <button>new line</button>
     <button>draw line</button>
@@ -16,20 +64,41 @@
     <button>draw output</button>
     <button>delete element</button>
     <button id="toggleTestRenderButton">toggle testRender</button>
-    <input type="range" id="scale" min="25" max="300" step="5" value="100">
+    <select id="themeSelect">
+      <option value="dark">Dark theme</option>
+      <option value="light">Light theme</option>
+      <option value="system">System preferred</option>
+    </select>
+    <input type="range" id="scale" list="scaleMarkers" min="25" max="300" step="5" value="100">
+    <datalist id="scaleMarkers">
+      <option value="0"></option>
+      <option value="25"></option>
+      <option value="50"></option>
+      <option value="75"></option>
+      <option value="100"></option>
+      <option value="125"></option>
+      <option value="150"></option>
+      <option value="175"></option>
+      <option value="200"></option>
+      <option value="250"></option>
+      <option value="300"></option>
+    </datalist>
   </div>
-  <div class="ldRender" id="programRender"></div>
   <hr>
-  <ol class="ldRender" id="testRender" hidden>
+  <div style="overflow: auto;">
+    <ol class="ldRender" id="programWorkspace"></ol>
+  </div>
+  <hr>
+  <ol class="ldRender" id="testRender" hidden >
     <li class="ldLine-container">
       <div class="ldLine">
         <div class="ldElement">
           <div class="ldElement-description">DESCRIPTIONasdasdasdasda</div>
           <div>asdas</div>
         </div>
-        <div class="ldLine-element">
-          <div class="ldLine-top hidden"></div>
-          <div class="ldLine-bottom hidden"></div>
+        <div class="ldElement">
+          <div class="ldLine-top ldLine-disabled"></div>
+          <div class="ldLine-bottom ldLine-disabled"></div>
           <div class="ldLine-middle"></div>
           <div class="ldLine-left"></div>
           <div class="ldLine-right"></div>
@@ -46,8 +115,8 @@
           </div>
           <!-- <div class="ldElement-center-reference"></div> -->
         </div>
-        <div class="ldLine-element">
-          <div class="ldLine-top hidden"></div>
+        <div class="ldElement">
+          <div class="ldLine-top ldLine-disabled"></div>
           <div class="ldLine-bottom"></div>
           <div class="ldLine-middle"></div>
           <div class="ldLine-left"></div>
@@ -91,23 +160,23 @@
             <div class="ldElement-id">T0001</div>
           </div>
         </div>
-        <div class="ldLine-element">
-          <div class="ldLine-top hidden"></div>
-          <div class="ldLine-bottom hidden"></div>
+        <div class="ldElement">
+          <div class="ldLine-top ldLine-disabled"></div>
+          <div class="ldLine-bottom ldLine-disabled"></div>
           <div class="ldLine-middle"></div>
           <div class="ldLine-left"></div>
           <div class="ldLine-right"></div>
         </div>
-        <div class="ldLine-element">
+        <div class="ldElement">
           <div class="ldLine-top"></div>
-          <div class="ldLine-bottom hidden"></div>
+          <div class="ldLine-bottom ldLine-disabled"></div>
           <div class="ldLine-middle"></div>
           <div class="ldLine-left"></div>
           <div class="ldLine-right"></div>
         </div>
-        <div class="ldLine-element">
-          <div class="ldLine-top hidden"></div>
-          <div class="ldLine-bottom hidden"></div>
+        <div class="ldElement">
+          <div class="ldLine-top ldLine-disabled"></div>
+          <div class="ldLine-bottom ldLine-disabled"></div>
           <div class="ldLine-middle"></div>
           <div class="ldLine-left"></div>
           <div class="ldLine-right"></div>
