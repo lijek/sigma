@@ -53,6 +53,7 @@ hr {
   width: fit-content;
   list-style-type: none;
   counter-reset: section;
+  padding: 0;
 }
 
 /* .ldLine */
@@ -86,6 +87,9 @@ hr {
 }
 
 .ldLine-container::before {
+  width: 2em;
+  overflow: hidden;
+  text-align: right;
   counter-increment: section;
   content: counter(section) ".";
   vertical-align: top;

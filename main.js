@@ -5,7 +5,7 @@ function initThemeChange() {
 
   const themeSelect = document.getElementById("themeSelect");
 
-  const storedTheme = localStorage.getItem('theme') || getSystemPreferredTheme();
+  const storedTheme = localStorage.getItem('theme') || "system";
   if (storedTheme){
     if (storedTheme === "system"){
       document.documentElement.setAttribute('data-theme', getSystemPreferredTheme());
@@ -34,10 +34,10 @@ function initThemeChange() {
 
 function initWorkspaceScale(){
   function appendScale(value){
-    testRender.style.transform = "scale(" + scaleInput.value / 100 + ")";
-    programWorkspace.style.transform = "scale(" + scaleInput.value / 100 + ")";
-    /* testRender.style.scale = value;
-    programWorkspace.style.scale = value; */
+    /* testRender.style.transform = "scale(" + value / 100 + ")";
+    programWorkspace.style.transform = "scale(" + value / 100 + ")"; */
+    testRender.style.scale = value;
+    programWorkspace.style.scale = value;
   }
 
   const scaleInput = document.getElementById("scale");
@@ -49,6 +49,11 @@ function initWorkspaceScale(){
   appendScale(scaleInput.value / 100);
 
   scaleInput.addEventListener("change", () => {
+    localStorage.setItem("workspaceScale", scaleInput.value);
+    appendScale(scaleInput.value / 100);
+  });
+
+  scaleInput.addEventListener("input", () => {
     localStorage.setItem("workspaceScale", scaleInput.value);
     appendScale(scaleInput.value / 100);
   });
@@ -92,23 +97,89 @@ const programWorkspace = document.getElementById("programWorkspace");
 const emptyLineElement = document.getElementById("ldEmptyLineElement").cloneNode(true);
 emptyLineElement.id = "";
 
+const emptyElement = emptyLineElement.cloneNode(true);
+emptyElement.innerHTML = '';
+
 const emptyLine = document.getElementById("ldLineContainer").cloneNode(true);
 emptyLine.id = "";
 
 for(var i = 0; i < program.lineWidth; i++){
-  emptyLine.childNodes[1].appendChild(emptyLineElement.cloneNode(true));
+  emptyLine.childNodes[1].appendChild(emptyElement.cloneNode(true));
 }
+
+const IOElementTemplate = document.getElementById("ldIO").cloneNode(true);
 
 function prepareWorkspace(){
   programWorkspace.innerHTML = "";
-  programWorkspace.appendChild(emptyLine.cloneNode(true));
-  programWorkspace.appendChild(emptyLine.cloneNode(true));
-  programWorkspace.appendChild(emptyLine.cloneNode(true));
-  programWorkspace.appendChild(emptyLine.cloneNode(true));
+  for (let index = 0; index < 100; index++) {
+    programWorkspace.appendChild(emptyLine.cloneNode(true));
+  }
 }
 
 //init program, TODO inicjalizacja programu
 prepareWorkspace(program);
+
+function selectElement(element){
+  console.log(element);
+  element.classList.add("cursor");
+  element.classList.add("selected");
+}
+
+function initControlButtons(){
+  const newLineBtn = document.getElementById("newLine");
+  newLineBtn.addEventListener("click", e => {
+    programWorkspace.appendChild(emptyLine.cloneNode(true));
+  });
+
+  const horizontalLineBtn = document.getElementById("horizontalLine");
+  horizontalLineBtn.addEventListener("click", e => {
+    //asd
+  });
+
+  const verticalLineBtn = document.getElementById("verticalLine");
+  verticalLineBtn.addEventListener("click", e => {
+    //asd
+  });
+
+  const drawInputBtn = document.getElementById("drawInput");
+  drawInputBtn.addEventListener("click", e => {
+    const element = getElementAtPosition(workspace.cursor);
+    element.replaceWith(IOElementTemplate.cloneNode(true));
+    selectElement(element);
+  });
+
+  const drawOutputBtn = document.getElementById("drawOutput");
+  drawOutputBtn.addEventListener("click", e => {
+    const element = getElementAtPosition(workspace.cursor);
+    const IOElement = IOElementTemplate.cloneNode(true);
+    IOElement.querySelector(".ldIO-element-center").classList.add("ldIO-element-output");
+    element.replaceWith(IOElement);
+    selectElement(element);
+  });
+
+  const negateIOElementBtn = document.getElementById("negateIOElement");
+  negateIOElementBtn.addEventListener("click", e => {
+    const element = getElementAtPosition(workspace.cursor);
+    const negation = element.querySelector(".ldIO-element-negation");
+    console.log(negation);
+    if(!negation)
+      return;
+    
+    if(negation.classList.contains("hidden"))
+      negation.classList.remove("hidden");
+    else
+      negation.classList.add("hidden");
+  });
+  
+  const clearElementBtn = document.getElementById("clearElement");
+  clearElementBtn.addEventListener("click", e => {
+    const element = getElementAtPosition(workspace.cursor);
+    element.replaceWith(emptyLineElement.cloneNode(true));
+    selectElement(element);
+  });
+}
+
+initControlButtons();
 
 const workspace = {
   cursor: {x: -1, y: -1},

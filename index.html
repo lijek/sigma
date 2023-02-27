@@ -16,7 +16,7 @@
       <div class="ldIO-element-left"></div>
       <div class="ldIO-element-right"></div>
       <div class="ldIO-element-center">
-        <div class="ldIO-element-negation"></div>
+        <div class="ldIO-element-negation hidden"></div>
       </div>
       <div class="ldElement-id-container">
         <div class="ldElement-id">id-placeholder</div>
@@ -58,11 +58,13 @@
   </div>
 
   <div id="menuBar">
-    <button>new line</button>
-    <button>draw line</button>
-    <button>draw input</button>
-    <button>draw output</button>
-    <button>delete element</button>
+    <button id="newLine">new line</button>
+    <button id="horizontalLine">horizontal line</button>
+    <button id="verticalLine">vertical line</button>
+    <button id="drawInput">draw input</button>
+    <button id="drawOutput">draw output</button>
+    <button id="negateIOElement">negate I/O</button>
+    <button id="clearElement">clear element</button>
     <button id="toggleTestRenderButton">toggle testRender</button>
     <select id="themeSelect">
       <option value="dark">Dark theme</option>
