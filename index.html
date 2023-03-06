@@ -11,36 +11,39 @@
 <body>
   <!-- TODO template wszystkie-->
   <div style="display: none;" id="ldTemplates">
-    <div class="ldElement" id="ldIO">
-      <div class="ldElement-description">description-placeholder</div>
+    <div class="ldElement" id="ldEmptyElement"></div>
+
+    <div class="ldElement ldIO-element" id="ldIO">
+      <div class="ldElement-description">description</div>
       <div class="ldIO-element-left"></div>
       <div class="ldIO-element-right"></div>
       <div class="ldIO-element-center">
-        <div class="ldIO-element-negation hidden"></div>
+        <!-- <div class="ldIO-element-negation hidden"></div>
+        <div class="ldIO-element-set-reset"></div> -->
       </div>
       <div class="ldElement-id-container">
-        <div class="ldElement-id">id-placeholder</div>
+        <div class="ldElement-id">id</div>
       </div>
     </div>
 
     <div class="ldIO-element-negation" id="ldIONegation"></div>
 
     <div class="ldElement" id="ldTimer">
-      <div class="ldElement-description">description-placeholder</div>
+      <div class="ldElement-description">description</div>
       <div class="ldBlock-element-left"></div>
       <div class="ldBlock-element-right"></div>
       <div class="ldBlock-element-center">
-        <div class="ldTimer-description">
-          <div>on-delay-placeholder</div>
+        <!-- <div class="ldTimer-description">
+          <div>on-delay</div>
           <div class="ldTimer-description-subtext">ON</div>
-        </div>
+        </div> -->
         <div class="ldTimer-description">
-          <div>off-delay-placeholder</div>
+          <div>off-delay</div>
           <div class="ldTimer-description-subtext">OFF</div>
         </div>
       </div>
       <div class="ldElement-id-container">
-        <div class="ldElement-id">id-placeholder</div>
+        <div class="ldElement-id">id</div>
       </div>
     </div>
 
@@ -48,22 +51,38 @@
       <div class="ldLine"></div>
     </li>
 
-    <div class="ldElement" id="ldEmptyLineElement">
+    <!-- <div class="ldElement" id="ldEmptyLineElement">
       <div class="ldLine-top ldLine-disabled"></div>
       <div class="ldLine-bottom ldLine-disabled"></div>
       <div class="ldLine-middle ldLine-disabled"></div>
       <div class="ldLine-left ldLine-disabled"></div>
       <div class="ldLine-right ldLine-disabled"></div>
-    </div>
+    </div> useless -->
   </div>
 
-  <div id="menuBar">
+  <div id="menu-bar">
     <button id="newLine">new line</button>
-    <button id="horizontalLine">horizontal line</button>
-    <button id="verticalLine">vertical line</button>
+    <div class="arrow-grid" id="lineDrawingButtons">
+      <div></div>
+      <button id="drawTopLine" value="top">↑</button>
+      <div></div>
+      <button id="drawLeftLine" value="left">←</button>
+      <button id="toggleLines" value="toggleAll"><!-- ✕ -->╋</button>
+      <button id="drawRightLine" value="right">→</button>
+      <div></div>
+      <button id="drawBottomLine" value="bottom">↓</button>
+      <div></div>
+    </div>
     <button id="drawInput">draw input</button>
     <button id="drawOutput">draw output</button>
-    <button id="negateIOElement">negate I/O</button>
+    <select id="ElementTypeSelect">
+      <option value="none">none</option>
+      <option value="negation">negation</option>
+      <option value="set" id="IOElementSetType">set</option>
+      <option value="reset" id="IOElementResetType">reset</option>
+      <option value="onDelay" id="TimerOnDelayType">on delay</option>
+      <option value="offDelay" id="TimerOffDelayType">off delay</option>
+    </select>
     <button id="clearElement">clear element</button>
     <button id="toggleTestRenderButton">toggle testRender</button>
     <select id="themeSelect">
@@ -91,7 +110,7 @@
     <ol class="ldRender" id="programWorkspace"></ol>
   </div>
   <hr>
-  <ol class="ldRender" id="testRender" hidden >
+  <ol class="ldRender" id="testRender" >
     <li class="ldLine-container">
       <div class="ldLine">
         <div class="ldElement">
@@ -177,12 +196,15 @@
           <div class="ldLine-right"></div>
         </div>
         <div class="ldElement">
-          <div class="ldLine-top ldLine-disabled"></div>
-          <div class="ldLine-bottom ldLine-disabled"></div>
-          <div class="ldLine-middle"></div>
-          <div class="ldLine-left"></div>
-          <div class="ldLine-right"></div>
-        </div>
+          <div class="ldElement-description">kekium</div>
+          <div class="ldIO-element-left"></div>
+          <div class="ldIO-element-right"></div>
+          <div class="ldIO-element-center ldIO-element-output">
+            <div class="ldIO-element-set-reset">S</div>
+          </div>
+          <div class="ldElement-id-container">
+            <div class="ldElement-id">m01</div>
+          </div>
       </div>
     </li>
   </ol>

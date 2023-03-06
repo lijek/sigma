@@ -13,7 +13,7 @@ html[data-theme='dark'] {
   --background-color: #121212;
   --text-color: #F7F8F8;
   --line-color: #c9c9c9;
-  --hover-background: #55555580;
+  --hover-background: #ffffff33;
   --selected-border: #3838ff;
   --selection-background: #9090ffab;
 }
@@ -46,6 +46,16 @@ body {
 
 hr {
   pointer-events: none;
+}
+
+#menu-bar > *{
+  vertical-align: middle;
+}
+
+.arrow-grid {
+  display: inline-grid;
+  grid-template-columns: 30px 30px 30px;
+  grid-template-rows: 30px 30px 30px;
 }
 
 .ldRender {
@@ -125,6 +135,7 @@ hr {
   right: 0px;
   top: 0px;
   bottom: 0px;
+  z-index: -69;
   /* łeeh widać siatke w chrome bo transform scale, w firefox działa tak jak chce*/
 }
 
@@ -262,6 +273,13 @@ hr {
   height: 100%;
   /* clip-path: polygon(calc(0% - var(--line-thickness)) 0, 0 0, calc(100% + var(--line-thickness)) 100%, 100% 100%); <- do cipy */
   clip-path: polygon(calc(0% - var(--line-thickness-x2)) 0, 0 0, calc(100% + var(--line-thickness-x2)) 100%, 100% 100%);
+}
+
+.ldIO-element-set-reset {
+  margin-top: var(--line-thickness);
+  text-align: center;
+  vertical-align: middle;
+  font-size: larger;
 }
 
 /* .ldIO-element */
